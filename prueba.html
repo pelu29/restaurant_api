@@ -4,17 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: #333;
+            color: #ccc;
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 <body>
     <h2>
         hola mundo
+        <button class="boton" value="1">Entragado</button>
     </h2>
 </body>
 <script>
-    fetch("http://localhost:3000/api/pedidos")
-    .then(respuesta=>respuesta.json())
-    .then(resultado=>{
-        console.log(resultado)
+
+    const boton = document.querySelector(".boton")
+    boton.addEventListener("click",function(){
+        const valorButon = boton.value
+        fetch("http://localhost:3000/api/pedidos/enCamino",{
+            method:"POST",
+            headers:{
+                "Conten-type":"application/json"
+            },
+            body:JSON.stringify(valorButon)
+        })
+        .then(respuesta=>respuesta.json())
+        .then(resultado=>{
+            console.log(resultado)
+        })
     })
+
 </script>
 </html>
