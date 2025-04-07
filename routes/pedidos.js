@@ -5,11 +5,11 @@ const router = express.Router();
 router.get("/", (req, res) => {
     const consulta = `
     SELECT 
-    pedidos.id_pedido AS 'ID Pedido',
-    pedidos.id_plato AS 'ID Plato',
-    pedidos.id_mesa AS 'Mesa Asociada',
-    platos.nombre_plato AS 'Nombre Plato',
-    pedidos.estado AS 'Estado'
+    pedidos.id_pedido AS 'id_pedido',
+    pedidos.id_plato AS 'id_plato',
+    pedidos.id_mesa AS 'mesa_asociada',
+    platos.nombre_plato AS 'nombre_plato',
+    pedidos.estado AS 'estado'
     FROM pedidos
     LEFT JOIN platos ON pedidos.id_plato = platos.id_plato;
     ` ;
