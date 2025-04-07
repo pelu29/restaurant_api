@@ -15,25 +15,29 @@
 <body>
     <h2>
         hola mundo
-        <button class="boton" value="1">Entragado</button>
+        <button class="boton" value="1">Entregado</button>
     </h2>
 </body>
 <script>
 
     const boton = document.querySelector(".boton")
+
+
     boton.addEventListener("click",function(){
-        const valorButon = boton.value
-        fetch("http://localhost:3000/api/pedidos/enCamino",{
+        const valorBoton = boton.value
+        console.log(valorBoton)
+        fetch("https://restaurant-api-gold.vercel.app/api/pedidos/enCamino",{
             method:"POST",
             headers:{
-                "Conten-type":"application/json"
+                "Content-type":"application/json"
             },
-            body:JSON.stringify(valorButon)
+            body:JSON.stringify({valorBoton})
         })
         .then(respuesta=>respuesta.json())
         .then(resultado=>{
             console.log(resultado)
         })
+
     })
 
 </script>
