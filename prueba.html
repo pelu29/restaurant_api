@@ -22,12 +22,23 @@
 
     const boton = document.querySelector(".boton")
 
+    const datos = {
+        id_plato:2,
+        id_mesa:4
+    }
+
 
     boton.addEventListener("click",function(){
-        fetch("http://localhost:3000/api/platos")
+        fetch("http://localhost:3000/api/pedidos/insertPedido",{
+            method:"POST",
+            headers:{
+                "Content-type":"application/json"
+            },
+            body:JSON.stringify(datos)
+        })
         .then(resultado=>resultado.json())
-        .then(datos=>{
-            console.log(datos)
+        .then(datosR=>{
+            console.log(datosR)
         })
 
     })

@@ -22,6 +22,19 @@ router.get("/", (req, res) => {
     })
 })
 
+router.post("/insertPedido",(req,res)=>{
+    const {id_plato,id_mesa} = req.body;
+    const consulta = "insert into pedidos(id_plato,id_mesa,estado) values(?,?,'Pendiente')";
+    conexion.query(consulta,[id_plato,id_mesa],(error,resultado)=>{
+        if(error){
+            res.status(500).json({error:"ocurrio un error al insertar el pedido"})
+        }
+        res.status(200).json({mensaje:"pedido enviado exitosamente"})
+    })
+})
+
+/*--------------------------------------editar estado-------------------------------------------*/
+
 router.post("/entregado", (req, res) => {
     const { id_mesa } = req.body
     const consulta = "update pedidos set estado = 'Entregado' where id_pedido = ?"
@@ -54,4 +67,6 @@ router.post("/enCocina", (req, res) => {
         res.status(200).json({ mensaje: "datos actualizados correctamente, el plato esta cocina" })
     })
 })
+
+/*-----------------------------------------------------------------------------------------------------------------------------*/
 module.exports = router;
