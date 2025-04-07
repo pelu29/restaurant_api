@@ -24,18 +24,10 @@
 
 
     boton.addEventListener("click",function(){
-        const valorBoton = boton.value
-        console.log(valorBoton)
-        fetch("https://restaurant-api-gold.vercel.app/api/pedidos/enCamino",{
-            method:"POST",
-            headers:{
-                "Content-type":"application/json"
-            },
-            body:JSON.stringify({valorBoton})
-        })
-        .then(respuesta=>respuesta.json())
-        .then(resultado=>{
-            console.log(resultado)
+        fetch("https://restaurant-api-gold.vercel.app/api/pedidos")
+        .then(resultado=>resultado.json())
+        .then(datos=>{
+            console.log(datos)
         })
 
     })
