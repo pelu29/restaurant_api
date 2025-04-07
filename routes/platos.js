@@ -25,18 +25,5 @@ router.get("/", (req, res) => {
     });
 });
 
-// Ruta para insertar un nuevo plato
-router.post("/", (req, res) => {
-    const { plato, precio, descripcion, categoria } = req.body;
-    const valores = [plato, precio, descripcion, categoria];
-    const consulta = "INSERT INTO platos(plato, precio, descripcion, categoria) VALUES(?, ?, ?, ?)";
-    conexion.query(consulta, valores, (error, resultado) => {
-        if (error) {
-            return res.status(400).json({ error: "Ocurrió un error al insertar los datos" });
-        }
-        return res.status(200).json({ mensaje: "Plato agregado exitosamente" });
-    });
-});
-
 // Exportamos la ruta
 module.exports = router;
