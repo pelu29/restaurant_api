@@ -22,16 +22,22 @@ router.get("/", (req, res) => {
     })
 })
 
-router.post("/insertPedido",(req,res)=>{
-    const {id_plato,id_mesa} = req.body;
-    const consulta = "insert into pedidos(id_plato,id_mesa,estado) values(?,?,'Pendiente')";
-    conexion.query(consulta,[id_plato,id_mesa],(error,resultado)=>{
-        if(error){
-            res.status(500).json({error:"ocurrio un error al insertar el pedido"})
-        }
-        res.status(200).json({mensaje:"pedido enviado exitosamente"})
-    })
-})
+router.post("/insertPedido", (req, res) => {
+    const { id_mesa, platos } = req.body;
+
+    // Realizar las inserciones de forma secuencial
+    platos.forEach(plato => {
+        const consulta = "INSERT INTO pedidos(id_plato, id_mesa, estado) VALUES(?, ?, 'Pendiente')";
+        conexion.query(consulta, [plato.id_plato, id_mesa], (error, resultado) => {
+            if (error) {
+                return res.status(500).json({ error: "Ocurrió un error al insertar el pedido", detalles: error });
+            }
+        });
+    });
+
+    // Responder después de que todas las inserciones han sido procesadas
+    res.status(200).json({ mensaje: "Pedido enviado exitosamente" });
+});
 
 /*--------------------------------------editar estado-------------------------------------------*/
 
