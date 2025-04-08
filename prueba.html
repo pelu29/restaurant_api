@@ -25,17 +25,17 @@
     const boton = document.querySelector(".boton")
 
     const datos = {
-        id_mesa: 4,
-        platos: [{ id_plato: 2 }]  // Enviamos un array con el plato
+        id_mesa: 1,
+        platos: [{ id_plato: 9 }]  // Enviamos un array con el plato
     };
 
     boton.addEventListener("click", function () {
-        fetch("http://localhost:3000/api/pedidos/insertPedido", {
+        fetch("http://localhost:3000/api/pedidos/entregado", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
-            body: JSON.stringify(datos)
+            body: JSON.stringify({"id_pedido":"2"})
         })
             .then(resultado => resultado.json())
             .then(datosR => {

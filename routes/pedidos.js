@@ -42,9 +42,9 @@ router.post("/insertPedido", (req, res) => {
 /*--------------------------------------editar estado-------------------------------------------*/
 
 router.post("/entregado", (req, res) => {
-    const { id_mesa } = req.body
+    const { id_pedido } = req.body
     const consulta = "update pedidos set estado = 'Entregado' where id_pedido = ?"
-    conexion.query(consulta, [id_mesa], (error, resultado) => {
+    conexion.query(consulta, [id_pedido], (error, resultado) => {
         if (error) {
             res.status(500).json({ error: "ocurrio un error al editar el campo de estado" })
         }
@@ -53,9 +53,9 @@ router.post("/entregado", (req, res) => {
 })
 
 router.post("/enCamino", (req, res) => {
-    const { id_mesa } = req.body;
+    const { id_pedido } = req.body;
     const consulta = "update pedidos set estado = 'En Camino' where id_pedido = ?";
-    conexion.query(consulta, [id_mesa], (error, resultado) => {
+    conexion.query(consulta, [id_pedido], (error, resultado) => {
         if (error) {
             res.status(500).json({ error: "ocurrio un error al actualizar los datos" })
         }
@@ -64,9 +64,9 @@ router.post("/enCamino", (req, res) => {
 })
 
 router.post("/enCocina", (req, res) => {
-    const { id_mesa } = req.body
+    const { id_pedido } = req.body
     const consulta = "update pedidos set estado = 'En Cocina' where id_pedido = ?";
-    conexion.query(consulta, [id_mesa], (error, resultado) => {
+    conexion.query(consulta, [id_pedido], (error, resultado) => {
         if (error) {
             res.status(500).json({ error: "error al actualizar los datos a En Cocina" })
         }
