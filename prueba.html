@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
+        body {
             background-color: #333;
             color: #ccc;
             font-family: sans-serif;
         }
     </style>
 </head>
+
 <body>
     <h2>
         hola mundo
@@ -23,25 +25,27 @@
     const boton = document.querySelector(".boton")
 
     const datos = {
-        id_plato:2,
-        id_mesa:4
-    }
+        id_mesa: 4,
+        platos: [{ id_plato: 2 }]  // Enviamos un array con el plato
+    };
 
-
-    boton.addEventListener("click",function(){
-        fetch("http://localhost:3000/api/pedidos/insertPedido",{
-            method:"POST",
-            headers:{
-                "Content-type":"application/json"
+    boton.addEventListener("click", function () {
+        fetch("http://localhost:3000/api/pedidos/insertPedido", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
             },
-            body:JSON.stringify(datos)
+            body: JSON.stringify(datos)
         })
-        .then(resultado=>resultado.json())
-        .then(datosR=>{
-            console.log(datosR)
-        })
-
-    })
+            .then(resultado => resultado.json())
+            .then(datosR => {
+                console.log(datosR)
+            })
+            .catch(error => {
+                console.error("Error al realizar el pedido:", error);
+            });
+    });
 
 </script>
+
 </html>

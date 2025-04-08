@@ -6,6 +6,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
     const consulta = `
     select 
+    platos.id_plato as "id_plato",
     platos.nombre_plato as "nombre_plato",
     platos.descripcion as "descripcion",
     platos.precio as "precio",
