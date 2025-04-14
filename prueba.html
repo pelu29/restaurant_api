@@ -15,27 +15,28 @@
 </head>
 
 <body>
-    <h2>
-        hola mundo
-        <button class="boton" value="1">Entregado</button>
-    </h2>
+    <label for="">Consultar estado de pedido</label><br>
+    <input class="n_mesa" type="text" placeholder="numero de mesa"><br><br>
+    <button class="boton" value="1">consultar</button>
+
+    <p class="parrafo">
+
+    </p>
+    
 </body>
 <script>
-
-    const boton = document.querySelector(".boton")
-
-    const datos = {
-        id_mesa: 1,
-        platos: [{ id_plato: 9 }]  // Enviamos un array con el plato
-    };
+    const Mesa = document.querySelector(".n_mesa");
+    const boton = document.querySelector(".boton");
+    const parrafo = document.querySelector(".parrafo")
 
     boton.addEventListener("click", function () {
-        fetch("http://localhost:3000/api/pedidos/entregado", {
+        const numeroMesa = Mesa.value 
+        fetch("http://localhost:3000/api/pedidos/consultarPedido", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
-            body: JSON.stringify({"id_pedido":"3"})
+            body: JSON.stringify({"id_mesa":numeroMesa})
         })
             .then(resultado => resultado.json())
             .then(datosR => {

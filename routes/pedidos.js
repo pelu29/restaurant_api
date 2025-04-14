@@ -74,5 +74,27 @@ router.post("/enCocina", (req, res) => {
     })
 })
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------solicitar informacion de acuerdo al id_pedido--------------------------------------------------------------------*/
+
+router.post("/consultarPedido",(req,res)=>{
+    const {id_mesa} = req.body;
+    const consulta = `    SELECT 
+    pedidos.id_pedido AS 'id_pedido',
+	pedidos.id_mesa AS 'mesa_asociada',
+    platos.nombre_plato AS 'nombre_plato',
+    platos.precio AS 'precio',
+    pedidos.estado AS 'estado'
+    FROM pedidos
+    LEFT JOIN platos ON pedidos.id_plato = platos.id_plato
+    where pedidos.id_mesa = ?`
+
+    conexion.query(consulta,[id_mesa],(error,resultado)=>{
+        if(error){
+            res.status(500).json({error:"ocurrio un error al solicitar la informacion"})
+        }else if(resultado.length == 0){
+            res.status(200).json({mensaje:"no hay pedidos para esta mesa"})
+        }
+        res.status(200).json({resultado})
+    })
+})
 module.exports = router;
