@@ -94,7 +94,7 @@ router.post("/consultarPedido",(req,res)=>{
         }else if(resultado.length == 0){
             res.status(200).json({mensaje:"no hay pedidos para esta mesa"})
         }
-        res.status(200).json({resultado})
+        res.status(200).json(resultado)
     })
 })
 module.exports = router;
