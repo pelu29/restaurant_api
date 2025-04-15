@@ -4,7 +4,7 @@ const getAllTrabajadores = ()=>{
     return trabajadorModel.getAllTrabajadores();
 }
 
-const loginWorkers = (correo,contraseña)=>{
+const loginWorkers = async(correo,contraseña)=>{
     return trabajadorModel.loginWorker(correo,contraseña);
 }
 

@@ -16,8 +16,9 @@ const LoginWork = async (req,res)=>{
     try{
         const {correo,contraseña} = req.body;
         const resultado = await workerService.loginWorkers(correo,contraseña);
-        if(!resultado){
-            res.status(401).json({mensaje:"credenciales incorrectas"})
+        console.log(resultado)
+        if(resultado.length == 0){
+            return res.status(401).json({mensaje:"credenciales no registradas en el sistema"})
         }
 
         const token = jwt.sign(
@@ -27,7 +28,7 @@ const LoginWork = async (req,res)=>{
         )
         res.status(200).json({
             mensaje:"login exitoso",
-            token:token
+            token:token,
         })
     }catch(error){
         res.status(500).json({error:"ocurrio un error del sistema con la consulta"});
