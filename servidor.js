@@ -1,9 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const platosRouter = require("./routes/platos");
-const trabajadoresRouter = require("./routes/trabajadores")
-const pedidosRouter = require("./routes/pedidos")
+const platosRouter = require("./routes/platos.routes");
+const trabajadoresRouter = require("./routes/workers.routes")
+const pedidosRouter = require("./routes/pedidos.routes")
 const { json } = require("body-parser");
 
 const app = express();
