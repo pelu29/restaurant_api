@@ -31,12 +31,14 @@
 
     boton.addEventListener("click", function () {
         const numeroMesa = Mesa.value
-        fetch('http://localhost:3000/api/pedidos/consultarPedido', {
+        fetch('http://localhost:3000/api/trabajadores/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({id_mesa:2})
+            body: JSON.stringify({
+                id_mesa:2
+            })
         })
             .then(response => response.json())
             .then(data => {

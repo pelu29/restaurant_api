@@ -14,6 +14,18 @@ const getAllTrabajadores = ()=>{
     })
 }
 
+const loginWorker = (correo,contraseña) =>{
+    return new Promise((resolve,reject)=>{
+        const consulta = 'SELECT * FROM trabajador WHERE correo = ? AND contraseña = ?';
+        conexion.query(consulta,[correo,contraseña],(err,resul)=>{
+            if(err) reject(err);
+            else resolve(resul)
+        })
+    })
+}
+
+
 module.exports = {
-    getAllTrabajadores
+    getAllTrabajadores,
+    loginWorker
 }
